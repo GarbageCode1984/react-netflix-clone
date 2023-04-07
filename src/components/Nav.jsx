@@ -1,9 +1,24 @@
-import React from "react";
-import "./scss/Nav.scss";
+import React, { useEffect, useState } from "react";
+import "./Nav.css";
 
 export default function Nav() {
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            if (window.screenY > 50) {
+                setShow(true);
+            } else {
+                setShow(false);
+            }
+        });
+        return () => {
+            window.removeEventListener("scroll", () => {});
+        };
+    }, []);
+
     return (
-        <nav className="nav">
+        <nav className={`nav ${show && "nav_black"}`}>
             <img
                 src="./Netflix_logo.png"
                 alt="Netflix logo"
