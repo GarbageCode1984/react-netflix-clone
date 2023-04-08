@@ -21,7 +21,7 @@ export default function Banner() {
             ].id;
 
         const { data: movieDetail } = await axios.get(`movie/${movieId}`, {
-            prams: { append_to_response: "vidoes" },
+            params: { append_to_response: "videos" },
         });
         setMovie(movieDetail);
     };
@@ -30,6 +30,7 @@ export default function Banner() {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
     };
 
+    console.log(movie);
     if (!isClicked) {
         return (
             <header
@@ -66,16 +67,17 @@ export default function Banner() {
     } else {
         return (
             <Container>
-                <HomeContainer>clicked</HomeContainer>
-                <iframe
-                    width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/Srlp8fAXz8c"
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                ></iframe>
+                <HomeContainer>
+                    <Iframe
+                        width="640"
+                        height="360"
+                        src="https://www.youtube.com/embed/Srlp8fAXz8c"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="autoplay; fullscreen;"
+                        allowfullscreen
+                    ></Iframe>
+                </HomeContainer>
             </Container>
         );
     }
@@ -101,4 +103,12 @@ const Iframe = styled.iframe`
     z-index: -1;
     opacity: 0.65;
     border: none;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 `;
