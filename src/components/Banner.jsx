@@ -71,7 +71,7 @@ export default function Banner() {
                     <Iframe
                         width="640"
                         height="360"
-                        src="https://www.youtube.com/embed/Srlp8fAXz8c"
+                        src={`https://www.youtube.com/embed/${movie.videos.results[0]?.key}?controls=0&autoplay=1&loop=1&mute=1&playlist=${movie.videos.results[0]?.key}`}
                         title="YouTube video player"
                         frameborder="0"
                         allow="autoplay; fullscreen;"
