@@ -93,3 +93,21 @@ h2 {
     transform: scale(1.1);
     opacity: 1;
 }
+
+@media screen and (min-width: 1200px) {
+    .row_poster {
+        max-height: 160px;
+    }
+    .row_posterLarge {
+        max-height: 360px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .row_poster {
+        max-height: 100px;
+    }
+    .row_posterLarge {
+        max-height: 280px;
+    }
+}
