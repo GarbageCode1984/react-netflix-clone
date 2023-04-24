@@ -10,7 +10,7 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
 
     useEffect(() => {
         fetchMovieData();
-    }, []);
+    }, [fetchUrl]);
 
     const fetchMovieData = async () => {
         const request = await axios.get(fetchUrl);
