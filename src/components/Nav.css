@@ -26,3 +26,14 @@
 .nav_black {
     background-color: #111;
 }
+.nav_input {
+    position: fixed;
+    left: 50%;
+    width: 15%;
+    transform: translate(-50%, 0);
+    background-color: rgba(0, 0, 0, 0.582);
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px;
+    bottom: none;
+}
