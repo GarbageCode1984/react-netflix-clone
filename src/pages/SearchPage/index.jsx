@@ -1,6 +1,8 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "../../api/axios";
+import "./SearchPage.css";
 
 export default function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
@@ -18,15 +20,52 @@ export default function SearchPage() {
     }, [searchTerm]);
 
     const fetchSearchMovie = async (searchTerm) => {
+        console.log("searchTerm", searchTerm);
         try {
             const request = await axios.get(
                 `/search/multi?include_adult=false&query=${searchTerm}`
             );
-            setSearchResults(request);
+            setSearchResults(request.data.results);
         } catch (error) {
             console.log("error", error);
         }
     };
 
-    return <div>SearchPage</div>;
+    const renderSearchResults = () => {
+        return searchResults.length > 0 ? (
+            <section className="search_container">
+                {searchResults.map((movie, key) => {
+                    if (
+                        movie.backdrop_path !== null &&
+                        movie.media_type !== "person"
+                    ) {
+                        const movieImageUrl =
+                            "https://image.tmdb.org/t/p/w500" +
+                            movie.backdrop_path;
+                        return (
+                            <div className="movie" key={key}>
+                                <div className="movie_column_poster">
+                                    <img
+                                        src={movieImageUrl}
+                                        alt="movie"
+                                        className="movie_poster"
+                                    />
+                                </div>
+                            </div>
+                        );
+                    }
+                })}
+            </section>
+        ) : (
+            <div className="no_results">
+                <div className="no_results_text">
+                    <p>
+                        찾고자하는 검색어 "{searchTerm}"에 맞는 영화가 없습니다.
+                    </p>
+                </div>
+            </div>
+        );
+    };
+
+    return renderSearchResults();
 }
