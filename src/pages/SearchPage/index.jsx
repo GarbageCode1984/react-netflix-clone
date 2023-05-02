@@ -1,12 +1,13 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import "./SearchPage.css";
 import { useDebounce } from "../../hooks/useDebounce";
 
 export default function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate();
 
     const useQuery = () => {
         return new URLSearchParams(useLocation().search);
@@ -45,7 +46,10 @@ export default function SearchPage() {
                             movie.backdrop_path;
                         return (
                             <div className="movie" key={key}>
-                                <div className="movie_column_poster">
+                                <div
+                                    className="movie_column_poster"
+                                    onClick={() => navigate(`/${movie.id}`)}
+                                >
                                     <img
                                         src={movieImageUrl}
                                         alt="movie"
