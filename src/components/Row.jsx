@@ -21,7 +21,6 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
         setModalOpen(true);
         setMovieSelected(movie);
     };
-    console.log(movieSelected);
 
     return (
         <section className="row">
