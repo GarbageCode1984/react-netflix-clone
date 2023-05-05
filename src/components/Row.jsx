@@ -20,7 +20,8 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
 
     useEffect(() => {
         fetchMovieData();
-    }, [fetchUrl]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const fetchMovieData = async () => {
         const request = await axios.get(fetchUrl);
