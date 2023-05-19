@@ -3,10 +3,12 @@ import requests from "../api/requests";
 import axios from "../api/axios";
 import "./Banner.css";
 import styled from "styled-components";
+import YouTube from "react-youtube";
 
 export default function Banner() {
     const [movie, setMovie] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
+    const [banerVideo, setBanerVideo] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -31,6 +33,7 @@ export default function Banner() {
     };
 
     if (!isClicked) {
+        console.log(movie);
         return (
             <header
                 className="banner"
@@ -64,8 +67,34 @@ export default function Banner() {
             </header>
         );
     } else {
+        console.log(banerVideo);
         return (
             <Container>
+                <YouTube
+                    videoId={movie.videos.results[0]?.key}
+                    opts={{
+                        width: "1500",
+                        height: "800",
+                        playerVars: {
+                            autoplay: 1, //자동재생 O
+                            rel: 0, //관련 동영상 표시하지 않음 (근데 별로 쓸모 없는듯..)
+                            modestbranding: 1, // 컨트롤 바에 youtube 로고를 표시하지 않음
+                        },
+                    }}
+                    //이벤트 리스너
+                    onEnd={(e) => {
+                        e.target.stopVideo(0);
+                    }}
+                />
+                <button
+                    className="close_button"
+                    onClick={() => setIsClicked(false)}
+                >
+                    close
+                </button>
+            </Container>
+
+            /* <Container>
                 <HomeContainer>
                     <Iframe
                         width="640"
@@ -77,7 +106,7 @@ export default function Banner() {
                         allowfullscreen
                     ></Iframe>
                 </HomeContainer>
-            </Container>
+            </Container> */
         );
     }
 }

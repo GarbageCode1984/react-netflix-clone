@@ -3,7 +3,7 @@ import axios from "../api/axios";
 import "./Row.css";
 import MovieModal from "./MovieModal";
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Scrollbar, A11y } from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -38,7 +38,7 @@ export default function Row({ title, id, fetchUrl, isLargeRow }) {
             <h2>{title}</h2>
             <Swiper
                 // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                modules={[Navigation, Scrollbar, A11y]}
                 navigation
                 pagination={{ clickable: true }}
                 loop={true}
