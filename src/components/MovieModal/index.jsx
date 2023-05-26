@@ -11,6 +11,8 @@ export default function MovieModal({
     first_air_date,
     vote_average,
     setModalOpen,
+    adult,
+    popularity,
 }) {
     const ref = useRef();
 
@@ -34,13 +36,17 @@ export default function MovieModal({
                     />
                     <div className="modal_content">
                         <p className="modal_details">
-                            <span className="modal_user_perc">
-                                100% for you
-                            </span>
                             {release_date ? release_date : first_air_date}
                         </p>
+                        <span className={adult ? "r-rated" : "g-rated"}>
+                            {adult ? "🔺R-rated" : "✔️G-rated"}
+                        </span>
+                        <span> 👥{popularity}</span>
+                        <span className="modal_overview">
+                            {" "}
+                            👍{vote_average}
+                        </span>
                         <h2 className="modal_title">{title ? title : name}</h2>
-                        <p className="modal_overview">평점 : {vote_average}</p>
                         <p className="modal_overview">{overview}</p>
                     </div>
                 </div>

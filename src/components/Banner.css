@@ -107,5 +107,16 @@
 }
 
 .close_button {
-    border: 1px solid red;
+    width: 100px;
+    height: 50px;
+    margin-top: 1rem;
+    cursor: pointer;
+    background-color: #ffffff;
+    transition: 500ms;
+    font-weight: bold;
+    border-radius: 5px;
+    border-style: none;
+}
+.close_button:hover {
+    background-color: #ffffff5d;
 }

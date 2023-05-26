@@ -28,7 +28,7 @@
     font-size: 18px;
 }
 .modal_overview {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.5;
 }
 .modal_user-perc {
@@ -61,6 +61,14 @@
     cursor: pointer;
     z-index: 1000;
     color: #fff;
+}
+.r-rated {
+    color: #d82008;
+    font-family: "GmarketSansMedium", sans-serif;
+}
+.g-rated {
+    color: #08d808;
+    font-family: "GmarketSansMedium", sans-serif;
 }
 @media screen and (max-height: 768px) {
     .wrapper_modal {

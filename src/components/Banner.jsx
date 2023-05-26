@@ -8,7 +8,6 @@ import YouTube from "react-youtube";
 export default function Banner() {
     const [movie, setMovie] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
-    const [banerVideo, setBanerVideo] = useState(false);
 
     useEffect(() => {
         fetchData();
@@ -32,8 +31,8 @@ export default function Banner() {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
     };
 
+    console.log("movie", movie);
     if (!isClicked) {
-        console.log(movie);
         return (
             <header
                 className="banner"
@@ -67,7 +66,6 @@ export default function Banner() {
             </header>
         );
     } else {
-        console.log(banerVideo);
         return (
             <Container>
                 <YouTube
