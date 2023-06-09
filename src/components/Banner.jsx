@@ -4,10 +4,13 @@ import axios from "../api/axios";
 import "./Banner.css";
 import styled from "styled-components";
 import YouTube from "react-youtube";
+import MovieModal from "./MovieModal";
 
 export default function Banner() {
     const [movie, setMovie] = useState([]);
     const [isClicked, setIsClicked] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [movieSelected, setMovieSelected] = useState({});
 
     useEffect(() => {
         fetchData();
@@ -29,6 +32,11 @@ export default function Banner() {
 
     const truncate = (str, n) => {
         return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+    };
+
+    const handleClick = (movie) => {
+        setModalOpen(true);
+        setMovieSelected(movie);
     };
 
     console.log("movie", movie);
@@ -53,7 +61,10 @@ export default function Banner() {
                         >
                             Play
                         </button>
-                        <button className="banner_button info">
+                        <button
+                            className="banner_button info"
+                            onClick={() => handleClick(movie)}
+                        >
                             More Information
                         </button>
                     </div>
@@ -61,7 +72,12 @@ export default function Banner() {
                         {truncate(movie?.overview, 100)}
                     </h1>
                 </div>
-
+                {modalOpen && (
+                    <MovieModal
+                        {...movieSelected}
+                        setModalOpen={setModalOpen}
+                    />
+                )}
                 <div className="banner_fadeBottom" />
             </header>
         );
